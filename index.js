@@ -139,6 +139,7 @@ module.exports = function create (opts) {
     function hideWindow () {
       if (supportsTrayHighlightState) menubar.tray.setHighlightMode('never')
       if (!menubar.window) return
+      if (app.dock && app.dock.isVisible()) return
       menubar.emit('hide')
       menubar.window.hide()
       menubar.emit('after-hide')
