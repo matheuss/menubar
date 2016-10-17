@@ -101,6 +101,7 @@ module.exports = function create (opts) {
     }
 
     function showWindow (trayPos) {
+      if (opts.hidden) return
       if (supportsTrayHighlightState) menubar.tray.setHighlightMode('always')
       if (!menubar.window) {
         createWindow()
