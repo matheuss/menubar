@@ -87,7 +87,12 @@ module.exports = function create (opts) {
 
       menubar.positioner = new Positioner(menubar.window)
 
-      menubar.window.on('blur', function () {
+      menubar.window.on('blur', function (event) {
+        if (menubar.window.isDevToolsFocused()) {
+          event.preventDefault()
+          return
+        }
+
         opts.alwaysOnTop ? emitBlur() : hideWindow()
       })
 
